@@ -1,0 +1,11 @@
+.input-learn {
+    width: 297px;
+}
+
+.learnings {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 15px;
+}
