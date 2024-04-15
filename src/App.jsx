@@ -4,23 +4,22 @@ import VerseDailySheet from './routes/VerseDailySheet';
 import './App.css'
 
 
+const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <FrontDailySheet />
+    },
+    {
+      path: "verse",
+      element: <VerseDailySheet />
+    }
+])
 
 function App() {
-  const router = createBrowserRouter([
-      {
-        path: "/",
-        element: <FrontDailySheet />
-      },
-      {
-        path: "/verse",
-        element: <VerseDailySheet />
-      }
-  ])
-  
-  return (
-      <>
+    return (
+      <div className='app'>
         <RouterProvider router={router} />
-      </>
+      </div>
     )
 }
 
