@@ -1,23 +1,21 @@
 import './Priorities.css'
 
-const Priorities = () => {
-    const Prioritie = () => {
-        return (
-            <div className="prioritie">
-                <input type="checkbox" />
-                <input type="text" className='input-prioritie' value="Correr cedo" />
-            </div>
-        )
+const Priorities = ({ priorities }) => {
+    const prioritiesItems = () => {
+        return priorities.map(priorite => {
+            return (
+                <div className="prioritie">
+                    <input type="checkbox" checked={priorite.done} />
+                    <input type="text" className='input-prioritie' value={ priorite.text } />
+                </div>
+            )
+        })
     }
 
     return (
         <div className="card card-two">
             <p className='title-card'>Prioridades:</p>
-            <Prioritie />
-            <Prioritie />
-            <Prioritie />
-            <Prioritie />
-            <Prioritie />
+            { prioritiesItems() }
         </div>
     )
 }
