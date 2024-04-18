@@ -23,15 +23,20 @@ const router = createBrowserRouter([
 function App() {
   const [globalState, setGlobalState] = useState(inicialState);
 
+  function updateGlobalState(key, value) {
+    setGlobalState({
+      ...globalState,
+      [key]: value
+    })
+  }
+
   useEffect(() => {
     localStorage.setItem("dailySheet", JSON.stringify(globalState));
   }, [globalState])
 
   return (
-    <AppContext.Provider value={{ globalState, setGlobalState }}>
-      <div className='app'>
+    <AppContext.Provider value={{ globalState, updateGlobalState }}>
         <RouterProvider basename={'folha'} router={router} />
-      </div>        
     </AppContext.Provider>
   )
 }

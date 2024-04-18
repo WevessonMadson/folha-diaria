@@ -1,12 +1,29 @@
 import './Priorities.css'
 
-const Priorities = ({ priorities }) => {
+const Priorities = ({ priorities, updatePriorities }) => {
+    const handlePriorities = (values) => {
+        //  fazer regra para mudar o valor no estado global 
+        //updatePriorities();
+    }
+
     const prioritiesItems = () => {
-        return priorities.map(priorite => {
+        return priorities.map((priorite, index) => {
             return (
-                <div className="prioritie">
-                    <input type="checkbox" checked={priorite.done} />
-                    <input type="text" className='input-prioritie' value={ priorite.text } />
+                <div 
+                    className="prioritie" 
+                    key={index}
+                >
+                    <input 
+                        type="checkbox" 
+                        checked={priorite.done} 
+                        onChange={handlePriorities}
+                     />
+                    <input 
+                        type="text" 
+                        className='input-prioritie' 
+                        value={ priorite.text } 
+                        onChange={handlePriorities}
+                     />
                 </div>
             )
         })

@@ -16,7 +16,7 @@ export default function getDailySheet() {
           opened: true,
           createdAt: date,
           focus: '',
-          priorities: [[{ done: false, text: '' }, { done: false, text: '' }, { done: false, text: '' }, { done: false, text: '' }, { done: false, text: '' }]],
+          priorities: [{ done: false, text: '' }, { done: false, text: '' }, { done: false, text: '' }, { done: false, text: '' }, { done: false, text: '' }],
           ignories: ['', '', ''],
           dayNote: '',
           todayLearnings: ['', '', '', '', ''],

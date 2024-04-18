@@ -1,11 +1,24 @@
 import './Ignore.css'
 
-const Ignore = ({ ignories }) => {
+const Ignore = ({ ignories, updateIgnore }) => {
     const IgnoreItems = () => {
-        return ignories.map(ignoreText => {
+
+        const handleIgnore = (e) => {
+            updateIgnore(e.target.name, e.target.value);
+        }
+
+        return ignories.map((ignoreText, index) => {
             return (
-                <div>
-                    <input type="text" className="input-ignore" value={ ignoreText } />
+                <div 
+                    key={index}
+                >
+                    <input 
+                    type="text" 
+                    className="input-ignore" 
+                    value={ ignoreText }
+                    name={index}
+                    onChange={ handleIgnore }
+                    />
                 </div>
             )
         })

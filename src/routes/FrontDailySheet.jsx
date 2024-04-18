@@ -9,21 +9,30 @@ import Button from '../components/Button';
 import { AppContext } from '../App';
  
 const FrontDailySheet = () => {
-  const { globalState, setGlobalState } = useContext(AppContext);
+  const { globalState, updateGlobalState } = useContext(AppContext);
 
   function handleFocus(focusinputText) {    
-    setGlobalState({
-      ...globalState,
-      focus: focusinputText
-    })
+    updateGlobalState('focus', focusinputText);
+  }
+
+  function handlePriorities(prioritiesList) {    
+    updateGlobalState('priorities', prioritiesList);
+  }
+  
+  function handleIgnore(index, value) {    
+    const current = globalState;
+    
+    current.ignories[index] = value;
+    
+    updateGlobalState('ignories', current.ignories);
   }
 
     return (
       <div className="app">
         <Header date={globalState.date} />
         <Focus focusText={globalState.focus} updateFocus={handleFocus} />
-        <Priorities priorities={ globalState.priorities } />
-        <Ignore ignories={globalState.ignories} />
+        <Priorities priorities={ globalState.priorities } updatePriorities={handlePriorities} />
+        <Ignore ignories={globalState.ignories} updateIgnore={handleIgnore} />
         <Link to="/verse">
           <Button label="Avaliar dia"/>
         </Link>
