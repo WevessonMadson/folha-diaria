@@ -15,9 +15,13 @@ const FrontDailySheet = () => {
     updateGlobalState('focus', focusinputText);
   }
 
-  function handlePriorities(prioritiesList) {    
-    updateGlobalState('priorities', prioritiesList);
-  }
+  function handlePrioritie(index, key, value) {    
+    const current = globalState;
+    
+    current.priorities[index][key] = value;
+    
+    updateGlobalState('priorities', current.priorities);
+  }  
   
   function handleIgnore(index, value) {    
     const current = globalState;
@@ -26,13 +30,24 @@ const FrontDailySheet = () => {
     
     updateGlobalState('ignories', current.ignories);
   }
+  
 
     return (
       <div className="app">
         <Header date={globalState.date} />
-        <Focus focusText={globalState.focus} updateFocus={handleFocus} />
-        <Priorities priorities={ globalState.priorities } updatePriorities={handlePriorities} />
-        <Ignore ignories={globalState.ignories} updateIgnore={handleIgnore} />
+
+        <Focus 
+          focusText={globalState.focus} 
+          updateFocus={handleFocus} />
+
+        <Priorities 
+          priorities={ globalState.priorities } 
+          updatePrioritie={handlePrioritie} />
+
+        <Ignore 
+          ignories={globalState.ignories} 
+          updateIgnore={handleIgnore} />
+
         <Link to="/verse">
           <Button label="Avaliar dia"/>
         </Link>

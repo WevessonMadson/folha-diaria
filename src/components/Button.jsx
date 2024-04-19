@@ -1,6 +1,6 @@
 const Button = (props) => {
     return (
-        <button>{props.label}</button>
+        <button type="button">{props.label}</button>
     )
 }
 

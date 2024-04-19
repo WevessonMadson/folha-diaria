@@ -1,9 +1,15 @@
 import './Priorities.css'
 
-const Priorities = ({ priorities, updatePriorities }) => {
-    const handlePriorities = (values) => {
-        //  fazer regra para mudar o valor no estado global 
-        //updatePriorities();
+const Priorities = ({ priorities, updatePrioritie }) => {
+    const handlePrioritie = (e) => {
+        console.log(e.target)
+        let { name, value, checked } = e.target;
+
+        let [ type, index ] = name.split('-');
+        
+        if (type == 'done') value = checked;
+        
+        updatePrioritie(index, type, value);
     }
 
     const prioritiesItems = () => {
@@ -14,15 +20,17 @@ const Priorities = ({ priorities, updatePriorities }) => {
                     key={index}
                 >
                     <input 
-                        type="checkbox" 
-                        checked={priorite.done} 
-                        onChange={handlePriorities}
+                        type="checkbox"  
+                        name={`done-${index}`}
+                        checked={ priorite.done }
+                        onChange={ handlePrioritie }
                      />
                     <input 
                         type="text" 
                         className='input-prioritie' 
                         value={ priorite.text } 
-                        onChange={handlePriorities}
+                        name={`text-${index}`}
+                        onChange={handlePrioritie}
                      />
                 </div>
             )
