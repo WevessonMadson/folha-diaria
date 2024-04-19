@@ -15,6 +15,18 @@ const VerseDailySheet = () => {
       updateGlobalState('dayNote', value);
     }
 
+    function handleLearnings(index, value) {
+      const current = globalState;
+      current.todayLearnings[index] = value;
+      updateGlobalState('todayLearnings', current.todayLearnings);
+    }
+
+    // function handleGratitude(index, value) {
+    //   const current = globalState;
+    //   current.todayGratefull[index] = value;
+    //   updateGlobalState('todayGratefull', current.todayGratefull);
+    // }
+
     return (
       <div className="daily-sheet">
         <Header date={ globalState.date }/>
@@ -23,7 +35,9 @@ const VerseDailySheet = () => {
           note={ globalState.dayNote }
           updateNote={ handleNote } />
 
-        <Learnings />
+        <Learnings 
+          learnings={ globalState.todayLearnings } 
+          updateLearning={ handleLearnings }/>
 
         <Gratitude />
         

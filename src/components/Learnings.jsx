@@ -1,22 +1,31 @@
 import './Learnings.css'
 
-const Learnings = () => {
-    const LeearnItem = () => {
-        return (
-            <div>
-                <input type="text" className="input-learn" value="dividir" />
-            </div>
-        )
+const Learnings = ({ learnings, updateLearning }) => {
+    function handleLearning(e) {
+        let { name, value } = e.target;
+        updateLearning(name, value);
+    }
+
+    const LearnItems = () => {
+        return learnings.map((learning, index) => {
+            return (
+                <div>
+                    <input 
+                        type="text" 
+                        className="input-learn" 
+                        value={ learning }
+                        name={index}
+                        onChange={ handleLearning }
+                    />
+                </div>
+            )
+        })
     }
     return (
         <div className="card card-two">
             <p className='title-card'>Aprendizados:</p>
             <div className="learnings">
-                <LeearnItem />
-                <LeearnItem />
-                <LeearnItem />
-                <LeearnItem />
-                <LeearnItem />                
+                { LearnItems() }                
             </div>
         </div>
     )
