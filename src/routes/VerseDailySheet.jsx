@@ -21,11 +21,11 @@ const VerseDailySheet = () => {
       updateGlobalState('todayLearnings', current.todayLearnings);
     }
 
-    // function handleGratitude(index, value) {
-    //   const current = globalState;
-    //   current.todayGratefull[index] = value;
-    //   updateGlobalState('todayGratefull', current.todayGratefull);
-    // }
+    function handleGratitude(index, value) {
+      const current = globalState;
+      current.todayGratefull[index] = value;
+      updateGlobalState('todayGratefull', current.todayGratefull);
+    }
 
     return (
       <div className="daily-sheet">
@@ -39,7 +39,9 @@ const VerseDailySheet = () => {
           learnings={ globalState.todayLearnings } 
           updateLearning={ handleLearnings }/>
 
-        <Gratitude />
+        <Gratitude 
+          gratitudes={ globalState.todayGratefull }
+          updateGratitude={ handleGratitude }/>
         
         <Link to="/">
           <Button label="Finalizar"/>

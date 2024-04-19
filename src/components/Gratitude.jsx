@@ -1,20 +1,32 @@
 import './Gratitude.css';
 
-const Gratitude = () => {
-    const ThanksItem = () => {
-        return (
-            <div>
-                <input type="text" className="input-thank" value="celular demais" />
-            </div>
-        )
+const Gratitude = ({ gratitudes, updateGratitude }) => {
+    function handleGratitude(e) {
+        let {name, value} = e.target;
+
+        updateGratitude(name, value);
+    }
+
+    const ThanksItems = () => {
+        return gratitudes.map((gratitude, index) => {
+            return (
+                <div>
+                    <input 
+                        type="text" 
+                        className="input-thank" 
+                        value={ gratitude }
+                        name={index}
+                        onChange={ handleGratitude }
+                    />
+                </div>
+            )
+        })
     }
     return (
         <div className="card card-three">
             <p className='title-card'>Grato por:</p>
             <div className="thanks">
-                <ThanksItem />
-                <ThanksItem />
-                <ThanksItem />                
+                { ThanksItems() }               
             </div>
         </div>
     )
