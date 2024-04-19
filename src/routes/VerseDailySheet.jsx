@@ -9,14 +9,24 @@ import Note from '../components/Note';
 import { AppContext } from '../App';
  
 const VerseDailySheet = () => {
-    const { globalState, setGlobalState } = useContext(AppContext);
+    const { globalState, updateGlobalState } = useContext(AppContext);
+
+    function handleNote(value) {
+      updateGlobalState('dayNote', value);
+    }
 
     return (
-      <div className="app">
-        <Header date={globalState.date}/>
-        <Note />
+      <div className="daily-sheet">
+        <Header date={ globalState.date }/>
+
+        <Note 
+          note={ globalState.dayNote }
+          updateNote={ handleNote } />
+
         <Learnings />
+
         <Gratitude />
+        
         <Link to="/">
           <Button label="Finalizar"/>
         </Link>

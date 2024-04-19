@@ -33,7 +33,7 @@ const FrontDailySheet = () => {
   
 
     return (
-      <div className="app">
+      <div className="daily-sheet">
         <Header date={globalState.date} />
 
         <Focus 
