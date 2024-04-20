@@ -10,7 +10,6 @@ const inicialState = getDailySheet();
 export const AppContext = createContext(inicialState);
 
 const router = createBrowserRouter([
-    basename="/folha-diaria",
     {
       path: "/",
       element: <FrontDailySheet />
@@ -19,7 +18,7 @@ const router = createBrowserRouter([
       path: "verse",
       element: <VerseDailySheet />
     }
-])
+], { basename: "/folha-diaria" })
 
 function App() {
   const [globalState, setGlobalState] = useState(inicialState);
