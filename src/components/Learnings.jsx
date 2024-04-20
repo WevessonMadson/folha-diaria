@@ -9,7 +9,7 @@ const Learnings = ({ learnings, updateLearning }) => {
     const LearnItems = () => {
         return learnings.map((learning, index) => {
             return (
-                <div>
+                <div key={index}>
                     <input 
                         type="text" 
                         className="input-learn" 

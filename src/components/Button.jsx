@@ -1,6 +1,8 @@
-const Button = (props) => {
+const Button = ({ label }) => {
     return (
-        <button type="button">{props.label}</button>
+        <button type="button">            
+            { label }
+        </button>
     )
 }
 

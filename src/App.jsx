@@ -30,12 +30,18 @@ function App() {
     })
   }
 
+  function clearDailySheet() {
+    localStorage.removeItem("dailySheet");
+
+    setGlobalState(getDailySheet());
+  }
+
   useEffect(() => {
     localStorage.setItem("dailySheet", JSON.stringify(globalState));
   }, [globalState])
 
   return (
-    <AppContext.Provider value={{ globalState, updateGlobalState }}>
+    <AppContext.Provider value={{ globalState, updateGlobalState, clearDailySheet }}>
         <RouterProvider basename={'folha'} router={router} />
     </AppContext.Provider>
   )

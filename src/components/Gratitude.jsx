@@ -10,7 +10,7 @@ const Gratitude = ({ gratitudes, updateGratitude }) => {
     const ThanksItems = () => {
         return gratitudes.map((gratitude, index) => {
             return (
-                <div>
+                <div key={index}>
                     <input 
                         type="text" 
                         className="input-thank" 

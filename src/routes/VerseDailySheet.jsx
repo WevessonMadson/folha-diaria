@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { createElement, useContext } from 'react';
 import { Link } from 'react-router-dom'; 
 import Header from '../components/Header';
 import Learnings from '../components/Learnings';
@@ -9,7 +9,7 @@ import Note from '../components/Note';
 import { AppContext } from '../App';
  
 const VerseDailySheet = () => {
-    const { globalState, updateGlobalState } = useContext(AppContext);
+    const { globalState, updateGlobalState, clearDailySheet } = useContext(AppContext);
 
     function handleNote(value) {
       updateGlobalState('dayNote', value);
@@ -25,6 +25,10 @@ const VerseDailySheet = () => {
       const current = globalState;
       current.todayGratefull[index] = value;
       updateGlobalState('todayGratefull', current.todayGratefull);
+    }
+
+    function finishDailySheet() {
+      clearDailySheet();
     }
 
     return (
@@ -43,8 +47,11 @@ const VerseDailySheet = () => {
           gratitudes={ globalState.todayGratefull }
           updateGratitude={ handleGratitude }/>
         
-        <Link to="/">
-          <Button label="Finalizar"/>
+        <Link 
+          to="/"
+          onClick={ finishDailySheet }>
+          <Button 
+            label="Finalizar" />
         </Link>
       </div>
     );
