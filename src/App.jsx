@@ -10,6 +10,7 @@ const inicialState = getDailySheet();
 export const AppContext = createContext(inicialState);
 
 const router = createBrowserRouter([
+    basename="/folha-diaria",
     {
       path: "/",
       element: <FrontDailySheet />
@@ -42,7 +43,7 @@ function App() {
 
   return (
     <AppContext.Provider value={{ globalState, updateGlobalState, clearDailySheet }}>
-        <RouterProvider basename={"/folha-diaria/"} router={router} />
+        <RouterProvider router={router} />
     </AppContext.Provider>
   )
 }
