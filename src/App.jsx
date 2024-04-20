@@ -42,7 +42,7 @@ function App() {
 
   return (
     <AppContext.Provider value={{ globalState, updateGlobalState, clearDailySheet }}>
-        <RouterProvider basename={'folha-diaria'} router={router} />
+        <RouterProvider basename={"https://wevessonmadson.github.io/folha-diaria/"} router={router} />
     </AppContext.Provider>
   )
 }
