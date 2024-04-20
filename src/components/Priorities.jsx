@@ -2,7 +2,6 @@ import './Priorities.css'
 
 const Priorities = ({ priorities, updatePrioritie }) => {
     const handlePrioritie = (e) => {
-        console.log(e.target)
         let { name, value, checked } = e.target;
 
         let [ type, index ] = name.split('-');
