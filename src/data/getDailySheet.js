@@ -6,13 +6,14 @@ export default function getDailySheet() {
     if (!dataSheet) {
         let date = new Date();
         let day = date.getDate();
-  
-        if (date.getHours() > 19) {
-            day += 1;
-        }
+        let month = (date.getMonth() + 1);
+        let year = date.getFullYear();
+        
+        day = date.getHours() > 20 ? day + 1 : day;
+        month = month > 10 ? month : "0" + month;
         
         dailySheet = {
-          date: `${day}/${date.getMonth() > 10 ? date.getMonth() : "0" + date.getMonth()}/${date.getFullYear()}`,
+          date: `${day}/${month}/${year}`,
           opened: true,
           createdAt: date,
           focus: '',
