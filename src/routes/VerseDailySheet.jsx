@@ -6,25 +6,25 @@ import Gratitude from '../components/Gratitude';
 import Button from '../components/Button';
 import Note from '../components/Note';
 
-import { AppContext } from '../App';
+import { DailySheetContext } from '../App';
  
 const VerseDailySheet = () => {
-    const { globalState, updateGlobalState, clearDailySheet } = useContext(AppContext);
+    const { globalState, updateDailySheetState, clearDailySheet } = useContext(DailySheetContext);
 
     function handleNote(value) {
-      updateGlobalState('dayNote', value);
+      updateDailySheetState('dayNote', value);
     }
 
     function handleLearnings(index, value) {
       const current = globalState;
       current.todayLearnings[index] = value;
-      updateGlobalState('todayLearnings', current.todayLearnings);
+      updateDailySheetState('todayLearnings', current.todayLearnings);
     }
 
     function handleGratitude(index, value) {
       const current = globalState;
       current.todayGratefull[index] = value;
-      updateGlobalState('todayGratefull', current.todayGratefull);
+      updateDailySheetState('todayGratefull', current.todayGratefull);
     }
 
     function finishDailySheet() {

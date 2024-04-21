@@ -3,11 +3,12 @@ import { createContext, useEffect, useState } from 'react';
 import FrontDailySheet from './routes/FrontDailySheet';
 import VerseDailySheet from './routes/VerseDailySheet';
 import getDailySheet from './data/getDailySheet.js';
+import getHistorySheets from './data/getHistorySheets.js';
 import './App.css'
 
 const inicialState = getDailySheet();
 
-export const AppContext = createContext(inicialState);
+export const DailySheetContext = createContext(inicialState);
 
 const router = createBrowserRouter([
     {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
 function App() {
   const [globalState, setGlobalState] = useState(inicialState);
 
-  function updateGlobalState(key, value) {
+  function updateDailySheetState(key, value) {
     setGlobalState({
       ...globalState,
       [key]: value
@@ -31,6 +32,12 @@ function App() {
   }
 
   function clearDailySheet() {
+    const historySheets = getHistorySheets();
+
+    historySheets.push(globalState);
+
+    localStorage.setItem('historySheets', JSON.stringify(historySheets));
+
     localStorage.removeItem("dailySheet");
 
     setGlobalState(getDailySheet());
@@ -41,9 +48,9 @@ function App() {
   }, [globalState])
 
   return (
-    <AppContext.Provider value={{ globalState, updateGlobalState, clearDailySheet }}>
+    <DailySheetContext.Provider value={{ globalState, updateDailySheetState, clearDailySheet }}>
         <RouterProvider router={router} />
-    </AppContext.Provider>
+    </DailySheetContext.Provider>
   )
 }
 

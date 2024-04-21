@@ -6,13 +6,13 @@ import Priorities from '../components/Priorities';
 import Ignore from '../components/Ignore';
 import Button from '../components/Button';
 
-import { AppContext } from '../App';
+import { DailySheetContext } from '../App';
  
 const FrontDailySheet = () => {
-  const { globalState, updateGlobalState } = useContext(AppContext);
+  const { globalState, updateDailySheetState } = useContext(DailySheetContext);
 
   function handleFocus(focusinputText) {    
-    updateGlobalState('focus', focusinputText);
+    updateDailySheetState('focus', focusinputText);
   }
 
   function handlePrioritie(index, key, value) {    
@@ -20,7 +20,7 @@ const FrontDailySheet = () => {
     
     current.priorities[index][key] = value;
     
-    updateGlobalState('priorities', current.priorities);
+    updateDailySheetState('priorities', current.priorities);
   }  
   
   function handleIgnore(index, value) {    
@@ -28,7 +28,7 @@ const FrontDailySheet = () => {
     
     current.ignories[index] = value;
     
-    updateGlobalState('ignories', current.ignories);
+    updateDailySheetState('ignories', current.ignories);
   }
   
 
