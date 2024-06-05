@@ -10,6 +10,7 @@ export default function getDailySheet() {
         let year = date.getFullYear();
         
         day = date.getHours() > 20 ? day + 1 : day;
+        day = day >= 10 ? day : "0" + day;
         month = month > 10 ? month : "0" + month;
         
         dailySheet = {

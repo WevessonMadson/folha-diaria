@@ -13,11 +13,11 @@ export const DailySheetContext = createContext(inicialState);
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <FrontDailySheet />
+      element: <FrontDailySheet />,
     },
     {
       path: "verse",
-      element: <VerseDailySheet />
+      element: <VerseDailySheet />,
     }
 ], { basename: "/folha-diaria" })
 
