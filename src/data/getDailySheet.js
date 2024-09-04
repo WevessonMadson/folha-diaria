@@ -1,20 +1,21 @@
+import moment from 'moment';
+
 export default function getDailySheet() {
     const dataSheet = localStorage.getItem('dailySheet');
   
     let dailySheet = {};
     
     if (!dataSheet) {
-        let date = new Date();
-        let day = date.getDate();
-        let month = (date.getMonth() + 1);
-        let year = date.getFullYear();
-        
-        day = date.getHours() > 19 ? day + 1 : day;
-        day = day >= 10 ? day : "0" + day;
-        month = month > 10 ? month : "0" + month;
+      const date = moment();
+
+      console.log(date);
+
+      const newDate = date.isAfter(date.clone().hour(19), 'hour')
+        ? date.add(1, 'day')
+        : date;
         
         dailySheet = {
-          date: `${day}/${month}/${year}`,
+          date: newDate.format('DD/MM/YYYY'),
           opened: true,
           createdAt: date,
           focus: '',
