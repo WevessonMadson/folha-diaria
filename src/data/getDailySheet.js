@@ -9,7 +9,7 @@ export default function getDailySheet() {
         let month = (date.getMonth() + 1);
         let year = date.getFullYear();
         
-        day = date.getHours() > 20 ? day + 1 : day;
+        day = date.getHours() > 19 ? day + 1 : day;
         day = day >= 10 ? day : "0" + day;
         month = month > 10 ? month : "0" + month;
         
