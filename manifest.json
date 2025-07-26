@@ -15,7 +15,9 @@
   ],
   "lang": "pt",
   "display_override": [
-    "standalone"
+    "window-controls-overlay",
+    "standalone",
+    "browser"
   ],
   "prefer_related_applications": false,
   "icons": [
@@ -467,5 +469,9 @@
       "src": "ios/1024.png",
       "sizes": "1024x1024"
     }
-  ]
+  ],
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "focus-existing", "auto"]
+  },
+  "id": "folhaDiaria?1.1.1"
 }
