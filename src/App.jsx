@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       path: "verse",
       element: <VerseDailySheet />,
     }
-], { basename: "/folha-diaria" })
+])
 
 function App() {
   const [globalState, setGlobalState] = useState(inicialState);
