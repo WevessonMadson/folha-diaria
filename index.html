@@ -23,6 +23,11 @@
 
 <body>
   <div id="root"></div>
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('/folha-diaria/sw.js');
+    }
+  </script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
