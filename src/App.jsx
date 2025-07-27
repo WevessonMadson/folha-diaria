@@ -16,10 +16,10 @@ const router = createBrowserRouter([
       element: <FrontDailySheet />,
     },
     {
-      path: "/verse",
+      path: "verse",
       element: <VerseDailySheet />,
     }
-])
+], { basename: "/folha-diaria" })
 
 function App() {
   const [globalState, setGlobalState] = useState(inicialState);
