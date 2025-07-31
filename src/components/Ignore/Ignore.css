@@ -1,0 +1,19 @@
+.ignore {
+    width: 334px;
+    height: 172px;
+    padding: 19px 0px 26px;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ignories {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-ignore {
+    width: 297px;
+}

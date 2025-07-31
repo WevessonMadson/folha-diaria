@@ -1,0 +1,19 @@
+.priorities {
+    width: 334px;
+    height: 278px;
+    flex-direction: column;
+    align-items: left;
+    gap: 14px;
+    padding: 19px 0px 26px;
+}
+
+.prioritie {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.input-prioritie {
+    width: 261px;
+}
