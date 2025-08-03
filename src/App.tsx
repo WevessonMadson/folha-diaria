@@ -6,20 +6,26 @@ import VerseDailySheet from "./pages/VerseDailySheet/VerseDailySheet";
 import TodoPage from "./pages/TodoPage/TodoPage";
 
 import "./App.css";
+import Layout from "./components/Layout/Layout";
+import { MenuProvider } from "./contexts/MenuContext";
 
 function App() {
   return (
-    <TodoListProvider>
-      <DailySheetProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<FrontDailySheet />} />
-            <Route path="/verse" element={<VerseDailySheet />} />
-            <Route path="/todo" element={<TodoPage />} />
-          </Routes>
-        </BrowserRouter>
-      </DailySheetProvider>
-    </TodoListProvider>
+    <MenuProvider>
+      <TodoListProvider>
+        <DailySheetProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<FrontDailySheet />} />
+                <Route path="/verse" element={<VerseDailySheet />} />
+                <Route path="/todo" element={<TodoPage />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </DailySheetProvider>
+      </TodoListProvider>
+    </MenuProvider>
   );
 }
 

@@ -76,3 +76,18 @@ input:focus {
   flex-direction: column;
   gap: 5px;
 }
+
+.button-menu {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  z-index: 1001;
+  background-color: transparent;
+  border: none;
+}
+
+@media screen and (min-width: 430px) {
+  .button-menu img {
+    width: 32px;
+  }
+}

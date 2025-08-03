@@ -1,0 +1,32 @@
+.fade {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: #000000f7;
+  opacity: 0.96;
+  z-index: 1002;
+}
+
+#actionList ul {
+  list-style: none;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: absolute;
+  z-index: 1002;
+  margin-top: 30px;
+  width: 80%;
+}
+
+.li-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 3px 20px 3px 10px;
+  font-size: 20px;
+  width: 100%;
+}
+
+.descr-list {
+  margin-left: 5px;
+}
