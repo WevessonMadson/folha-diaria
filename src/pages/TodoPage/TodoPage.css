@@ -1,0 +1,48 @@
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  gap: 23px;
+}
+
+.tab-container {
+  display: flex;
+  background-color: #d2cc9a;
+  width: 256px;
+  border-radius: 10%;
+  margin-top: 35px;
+  flex-shrink: 0;
+}
+
+.tab {
+  font-weight: 500;
+  border: none;
+  background-color: #d2cc9a;
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: #cea45c;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  align-items: center;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.button-add-task {
+  width: 51px;
+  height: 49px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 14px;
+  z-index: 1000;
+}

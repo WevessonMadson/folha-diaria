@@ -1,20 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: #3F261C;
+  color: #3f261c;
   font-family: "JetbrainsMono", monospace;
 }
 
 body {
-  background-color: #C5BE8B;
+  background-color: #c5be8b;
 }
 
 p {
   font-size: 24px;
-
 }
 
 input[type="text"] {
@@ -35,7 +34,7 @@ input:focus {
 }
 
 .card {
-  background-color: #CEA45C;
+  background-color: #cea45c;
   border-radius: 10px;
   display: flex;
 }
@@ -44,7 +43,7 @@ input:focus {
   margin-left: 19px;
 }
 
-button {
+.button {
   border-radius: 10px;
   width: 210px;
   height: 49px;

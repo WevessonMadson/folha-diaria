@@ -1,0 +1,67 @@
+.task-card {
+  width: 331px;
+  padding: 9px 27px 9px 13px;
+  display: flex;
+  gap: 40px;
+}
+
+.task-card.done {
+  opacity: 90%;
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+  width: 231px;
+  gap: 11px;
+}
+
+.task-text {
+  font-weight: 800;
+}
+
+.task-text.done {
+  text-decoration: line-through;
+}
+
+.priority-info {
+  font-weight: 600;
+}
+
+.priority {
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.priority.alta {
+  background-color: rgba(215, 62, 62, 58%);
+}
+
+.priority.media {
+  background-color: rgba(215, 208, 62, 58%);
+}
+
+.priority.baixa {
+  background-color: rgba(72, 215, 62, 58%);
+}
+
+.date.open {
+  color: #69605c;
+}
+
+.task-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.task-actions button {
+  background-color: #498379;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
+  display: flex;
+  padding: 0.8px;
+  margin-bottom: 5px;
+}
