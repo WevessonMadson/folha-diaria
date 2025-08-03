@@ -1,7 +1,7 @@
-import ButtonFinish from "../../../public/assets/icons/check_24dp.svg";
-import ButtonEdit from "../../../public/assets/icons/edit_24dp.svg";
-import ButtonDelete from "../../../public/assets/icons/delete_24dp.svg";
-import ButtonUnDo from "../../../public/assets/icons/undo_24dp.svg";
+import ButtonFinish from "../../assets/icons/check_24dp.svg";
+import ButtonEdit from "../../assets/icons/edit_24dp.svg";
+import ButtonDelete from "../../assets/icons/delete_24dp.svg";
+import ButtonUnDo from "../../assets/icons/undo_24dp.svg";
 
 import "./TaskCard.css";
 
