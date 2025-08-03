@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import TaskCard from "../../components/TaskCard/TaskCard";
 import ButtonAdd from "../../assets/icons/add_task.svg";
