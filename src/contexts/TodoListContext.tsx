@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-type TaskType = {
+export type TaskType = {
   id: number;
   title: string;
   priority: "Baixa" | "Media" | "Alta";
@@ -8,8 +8,15 @@ type TaskType = {
   status: "todo" | "done";
 };
 
+export type NewTaskType = Omit<TaskType, "id" | "status">;
+
 type TodoListContextType = {
   tasks: TaskType[];
+  addTask: (newTask: NewTaskType) => void;
+  editTask: (id: number, newTask: NewTaskType) => void;
+  deleteTask: (id: number) => void;
+  finishTask: (id: number) => void;
+  unFinishTask: (id: number) => void;
 };
 
 const inicialStateTasks: TaskType[] = JSON.parse(
@@ -25,27 +32,75 @@ export const TodoListProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [tasks, setTasks] = useState(inicialStateTasks);
 
-  //   function updateDailySheetState(
-  //     key: string,
-  //     value: string | boolean | PrioritieType[] | string[]
-  //   ) {
-  //     setGlobalState({
-  //       ...globalState,
-  //       [key]: value,
-  //     });
-  //   }
+  const getLastId = () => {
+    let lastId = 0;
 
-  //   function clearDailySheet() {
-  //     const historySheets = getHistorySheets();
+    tasks.forEach((task) => {
+      if (task.id > lastId) lastId = task.id;
+    });
 
-  //     historySheets.push(globalState);
+    return lastId;
+  };
 
-  //     localStorage.setItem("historySheets", JSON.stringify(historySheets));
+  const addTask = (newTask: NewTaskType) => {
+    if (newTask.date) {
+      const [year, month, day] = newTask.date.split("-");
+      newTask.date = `${day}/${month}/${year}`;
+    }
 
-  //     localStorage.removeItem("dailySheet");
+    const newTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    newTasks.push({ id: getLastId() + 1, status: "todo", ...newTask });
 
-  //     setGlobalState(getDailySheet());
-  //   }
+    setTasks(newTasks);
+  };
+
+  const editTask = (id: number, newTask: NewTaskType) => {
+    let newTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    newTasks = newTasks.map((task: TaskType) => {
+      if (task.id === id)
+        return { id: task.id, status: task.status, ...newTask };
+      return task;
+    });
+
+    setTasks(newTasks);
+  };
+
+  const deleteTask = (id: number) => {
+    let newTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    newTasks = newTasks.filter((task: TaskType) => task.id !== id);
+    setTasks(newTasks);
+  };
+
+  const finishTask = (id: number) => {
+    let newTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    const today = new Date();
+
+    const day = String(today.getDate()).padStart(2, "0");
+    const month = String(today.getMonth() + 1).padStart(2, "0"); // Janeiro = 0
+    const year = today.getFullYear();
+
+    const formattedDate = `${day}/${month}/${year}`;
+
+    newTasks = newTasks.map((task: TaskType) => {
+      if (task.id === id)
+        return { ...task, status: "done", date: formattedDate };
+
+      return task;
+    });
+
+    setTasks(newTasks);
+  };
+
+  const unFinishTask = (id: number) => {
+    let newTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    newTasks = newTasks.map((task: TaskType) => {
+      if (task.id === id) return { ...task, status: "todo" };
+
+      return task;
+    });
+
+    setTasks(newTasks);
+  };
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -55,6 +110,11 @@ export const TodoListProvider: React.FC<{ children: React.ReactNode }> = ({
     <TodoListContext.Provider
       value={{
         tasks,
+        addTask,
+        editTask,
+        deleteTask,
+        finishTask,
+        unFinishTask,
       }}
     >
       {children}
