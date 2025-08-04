@@ -1,11 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
+export type PriorityTaskType = "Baixa" | "Media" | "Alta";
+
+export type StatusTaskType = "todo" | "done";
+
 export type TaskType = {
   id: number;
   title: string;
-  priority: "Baixa" | "Media" | "Alta";
+  priority: PriorityTaskType;
   date: string /* data para concluir ou data de conclusão */;
-  status: "todo" | "done";
+  status: StatusTaskType;
 };
 
 export type NewTaskType = Omit<TaskType, "id" | "status">;
@@ -43,13 +47,10 @@ export const TodoListProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const addTask = (newTask: NewTaskType) => {
-    if (newTask.date) {
-      const [year, month, day] = newTask.date.split("-");
-      newTask.date = `${day}/${month}/${year}`;
-    }
-
-    const newTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    let newTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     newTasks.push({ id: getLastId() + 1, status: "todo", ...newTask });
+
+    newTasks = ordenarTarefasGlobal(newTasks);
 
     setTasks(newTasks);
   };
@@ -61,6 +62,8 @@ export const TodoListProvider: React.FC<{ children: React.ReactNode }> = ({
         return { id: task.id, status: task.status, ...newTask };
       return task;
     });
+
+    newTasks = ordenarTarefasGlobal(newTasks);
 
     setTasks(newTasks);
   };
@@ -74,19 +77,19 @@ export const TodoListProvider: React.FC<{ children: React.ReactNode }> = ({
   const finishTask = (id: number) => {
     let newTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     const today = new Date();
-
     const day = String(today.getDate()).padStart(2, "0");
     const month = String(today.getMonth() + 1).padStart(2, "0"); // Janeiro = 0
     const year = today.getFullYear();
-
-    const formattedDate = `${day}/${month}/${year}`;
+    const completionDate = `${year}-${month}-${day}`;
 
     newTasks = newTasks.map((task: TaskType) => {
       if (task.id === id)
-        return { ...task, status: "done", date: formattedDate };
+        return { ...task, status: "done", date: completionDate };
 
       return task;
     });
+
+    newTasks = ordenarTarefasGlobal(newTasks);
 
     setTasks(newTasks);
   };
@@ -99,8 +102,45 @@ export const TodoListProvider: React.FC<{ children: React.ReactNode }> = ({
       return task;
     });
 
+    newTasks = ordenarTarefasGlobal(newTasks);
+
     setTasks(newTasks);
   };
+
+  function ordenarTarefasGlobal(tarefas: TaskType[]): TaskType[] {
+    const prioridadePeso: Record<PriorityTaskType, number> = {
+      Alta: 1,
+      Media: 2,
+      Baixa: 3,
+    };
+
+    return tarefas.slice().sort((a, b) => {
+      const timeA = a.date ? new Date(a.date).getTime() : null;
+      const timeB = b.date ? new Date(b.date).getTime() : null;
+
+      if (a.status === "todo" && b.status === "todo") {
+        // Ordenação para tarefas pendentes
+        if (timeA !== timeB) {
+          if (timeA === null) return 1;
+          if (timeB === null) return -1;
+          return timeA - timeB;
+        }
+        return prioridadePeso[a.priority] - prioridadePeso[b.priority];
+      }
+
+      if (a.status === "done" && b.status === "done") {
+        // Ordenação para tarefas finalizadas
+        if (timeA !== timeB) {
+          if (timeA === null) return -1;
+          if (timeB === null) return 1;
+          return timeB - timeA;
+        }
+      }
+
+      // Mantém a ordem relativa entre `todo` e `done` (ou opcionalmente agrupar)
+      return 0;
+    });
+  }
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
