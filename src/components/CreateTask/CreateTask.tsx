@@ -4,6 +4,7 @@ import "./CreateTask.css";
 import {
   useTodoList,
   type NewTaskType,
+  type PriorityTaskType,
   type TaskType,
 } from "../../contexts/TodoListContext";
 
@@ -15,7 +16,7 @@ type CreateTaskPropsType = {
 const CreateTask = ({ editingTask, onClose }: CreateTaskPropsType) => {
   const { addTask, editTask } = useTodoList();
   const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState<"Baixa" | "Media" | "Alta">("Baixa");
+  const [priority, setPriority] = useState<PriorityTaskType>("Baixa");
   const [date, setDate] = useState("");
 
   useEffect(() => {

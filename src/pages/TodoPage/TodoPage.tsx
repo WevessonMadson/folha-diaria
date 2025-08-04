@@ -4,12 +4,16 @@ import TaskCard from "../../components/TaskCard/TaskCard";
 import ButtonAdd from "../../assets/icons/add_task.svg";
 
 import "./TodoPage.css";
-import { useTodoList, type TaskType } from "../../contexts/TodoListContext";
+import {
+  useTodoList,
+  type StatusTaskType,
+  type TaskType,
+} from "../../contexts/TodoListContext";
 import CreateTask from "../../components/CreateTask/CreateTask";
 
 const TodoPage = () => {
   const { tasks, deleteTask, finishTask, unFinishTask } = useTodoList();
-  const [selected, setSelected] = useState("todo");
+  const [selected, setSelected] = useState<StatusTaskType>("todo");
   const [createTaskIsOpen, setCreateTaskIsOpen] = useState(false);
   const [tasksForExibition, setTasksForExibition] = useState(tasks);
   const [taskToEdit, setTaskToEdit] = useState<TaskType | undefined>(undefined);
