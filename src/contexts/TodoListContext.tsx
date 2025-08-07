@@ -50,8 +50,6 @@ export const TodoListProvider: React.FC<{ children: React.ReactNode }> = ({
     let newTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     newTasks.push({ id: getLastId() + 1, status: "todo", ...newTask });
 
-    newTasks = ordenarTarefasGlobal(newTasks);
-
     setTasks(newTasks);
   };
 
@@ -62,8 +60,6 @@ export const TodoListProvider: React.FC<{ children: React.ReactNode }> = ({
         return { id: task.id, status: task.status, ...newTask };
       return task;
     });
-
-    newTasks = ordenarTarefasGlobal(newTasks);
 
     setTasks(newTasks);
   };
@@ -89,8 +85,6 @@ export const TodoListProvider: React.FC<{ children: React.ReactNode }> = ({
       return task;
     });
 
-    newTasks = ordenarTarefasGlobal(newTasks);
-
     setTasks(newTasks);
   };
 
@@ -102,45 +96,8 @@ export const TodoListProvider: React.FC<{ children: React.ReactNode }> = ({
       return task;
     });
 
-    newTasks = ordenarTarefasGlobal(newTasks);
-
     setTasks(newTasks);
   };
-
-  function ordenarTarefasGlobal(tarefas: TaskType[]): TaskType[] {
-    const prioridadePeso: Record<PriorityTaskType, number> = {
-      Alta: 1,
-      Media: 2,
-      Baixa: 3,
-    };
-
-    return tarefas.slice().sort((a, b) => {
-      const timeA = a.date ? new Date(a.date).getTime() : null;
-      const timeB = b.date ? new Date(b.date).getTime() : null;
-
-      if (a.status === "todo" && b.status === "todo") {
-        // Ordenação para tarefas pendentes
-        if (timeA !== timeB) {
-          if (timeA === null) return 1;
-          if (timeB === null) return -1;
-          return timeA - timeB;
-        }
-        return prioridadePeso[a.priority] - prioridadePeso[b.priority];
-      }
-
-      if (a.status === "done" && b.status === "done") {
-        // Ordenação para tarefas finalizadas
-        if (timeA !== timeB) {
-          if (timeA === null) return -1;
-          if (timeB === null) return 1;
-          return timeB - timeA;
-        }
-      }
-
-      // Mantém a ordem relativa entre `todo` e `done` (ou opcionalmente agrupar)
-      return 0;
-    });
-  }
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
