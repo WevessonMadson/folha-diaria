@@ -28,17 +28,6 @@ const TodoPage = () => {
     setCreateTaskIsOpen(true);
   };
 
-  const formaterDate = (taskDate: string) => {
-    let formatedDate = "Sem data prevista";
-
-    if (taskDate) {
-      const [ano, mes, dia] = taskDate.split("-");
-      formatedDate = `${dia}/${mes}/${ano}`;
-    }
-
-    return formatedDate;
-  };
-
   useEffect(() => {
     const exibition = tasks.filter((task) => task.status === selected);
     setTasksForExibition(exibition);
@@ -73,7 +62,7 @@ const TodoPage = () => {
                       <TaskCard
                         title={task.title}
                         priority={task.priority}
-                        date={formaterDate(task.date)}
+                        date={task.date}
                         status={task.status}
                         onEdit={() => handleEdit(task)}
                         onDelete={() => deleteTask(task.id)}
