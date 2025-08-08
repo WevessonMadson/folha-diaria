@@ -6,6 +6,7 @@ import ButtonAdd from "../../assets/icons/add_task.svg";
 import "./TodoPage.css";
 import {
   useTodoList,
+  type PriorityTaskType,
   type StatusTaskType,
   type TaskType,
 } from "../../contexts/TodoListContext";
@@ -28,19 +29,36 @@ const TodoPage = () => {
     setCreateTaskIsOpen(true);
   };
 
-  const formaterDate = (taskDate: string) => {
-    let formatedDate = "Sem data prevista";
+  function sortingTasks(tasks: TaskType[], status: StatusTaskType): TaskType[] {
+    const priorityWeight: Record<PriorityTaskType, number> = {
+      Alta: 1,
+      Media: 2,
+      Baixa: 3,
+    };
 
-    if (taskDate) {
-      const [ano, mes, dia] = taskDate.split("-");
-      formatedDate = `${dia}/${mes}/${ano}`;
-    }
+    return tasks.slice().sort((a, b) => {
+      const timeA = a.date ? new Date(a.date).getTime() : null;
+      const timeB = b.date ? new Date(b.date).getTime() : null;
 
-    return formatedDate;
-  };
+      if (status === "todo") {
+        if (timeA !== timeB) {
+          if (timeA === null) return 1;
+          if (timeB === null) return -1;
+          return timeA - timeB;
+        }
+        return priorityWeight[a.priority] - priorityWeight[b.priority];
+      }
+
+      // status === "done"
+      return (timeB ?? 0) - (timeA ?? 0);
+    });
+  }
 
   useEffect(() => {
-    const exibition = tasks.filter((task) => task.status === selected);
+    let exibition = tasks.filter((task) => task.status === selected);
+
+    if (exibition.length > 1) exibition = sortingTasks(exibition, selected);
+
     setTasksForExibition(exibition);
   }, [tasks, selected]);
 
@@ -73,7 +91,7 @@ const TodoPage = () => {
                       <TaskCard
                         title={task.title}
                         priority={task.priority}
-                        date={formaterDate(task.date)}
+                        date={task.date}
                         status={task.status}
                         onEdit={() => handleEdit(task)}
                         onDelete={() => deleteTask(task.id)}

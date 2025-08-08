@@ -28,6 +28,17 @@ const TaskCard = ({
 }: TaskCardPropsType) => {
   const isDone = status === "done";
 
+  const formaterDate = (taskDate: string) => {
+    let formatedDate = "Sem data prevista";
+
+    if (taskDate) {
+      const [ano, mes, dia] = taskDate.split("-");
+      formatedDate = `${dia}/${mes}/${ano}`;
+    }
+
+    return formatedDate;
+  };
+
   return (
     <div className={`card task-card ${status}`}>
       <div className="task-info">
@@ -41,7 +52,7 @@ const TaskCard = ({
           </span>
         )}
         <span className={`date ${isDone ? "" : "open"}`}>
-          {isDone ? `Conclusão: ${date}` : date}
+          {isDone ? `Conclusão: ${formaterDate(date)}` : formaterDate(date)}
         </span>
       </div>
 
