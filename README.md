@@ -1,69 +1,64 @@
-# React + TypeScript + Vite
+# 🗓️ folha-diaria
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Descrição
 
-Currently, two official plugins are available:
+**folha-diaria** é uma aplicação web construída com **React**, **Vite** e **TypeScript**, com o objetivo de fornecer uma interface interativa e organizada para controle de obrigações diárias(prioridades do dia). Também possibilita a criação de Todo List.
+A interface foi desenvolvida com foco em usabilidade, organização de componentes e experiência fluida para o usuário.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A aplicação está configurada para funcionar como um site estático moderno, com deploy automatizado e performance otimizada.
 
-## Expanding the ESLint configuration
+🔗 Deploy em produção:  
+👉 https://folha-diaria.vercel.app :contentReference[oaicite:1]{index=1}
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧠 Tecnologias utilizadas
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Este projeto foi desenvolvido com as seguintes tecnologias:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **React** — Biblioteca principal para construção da interface de usuário.
+- **Vite** — Ferramenta moderna de build e ambiente de desenvolvimento rápido.
+- **TypeScript** — Tipagem estática para maior segurança e clareza no código.
+- **CSS** — Estilização customizada sem utilização de frameworks de UI.
+- **Vercel** — Plataforma de hospedagem e deploy contínuo.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Funcionalidades
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 🗓️ Exibição das prioridades do dia.
+- Todo List.
+- 📄 Estrutura de componentes modular e reutilizável.
+- 📈 Layout responsivo para diferentes tamanhos de tela.
+- ⚡ Inicialização rápida com ambiente de desenvolvimento já configurado.
+- 🌐 Deploy estático em Vercel com suporte a atualizações contínuas.
+
+---
+
+## 📁 Estrutura do projeto
+
+```text
+folha-diaria/
+├── public/
+│   ├── favicon.ico
+│   ├── placeholder.svg
+│   └── robots.txt
+├── src/
+│   ├── components/        # Componentes reutilizáveis da interface
+│   ├── data/              # Arquivos de dados e fixtures
+│   ├── hooks/             # Hooks customizados
+│   ├── lib/               # Funções utilitárias
+│   ├── pages/             # Páginas principais da aplicação
+│   ├── styles/            # Estilos globais e específicos
+│   ├── App.tsx            # Componente raiz da aplicação
+│   └── main.tsx           # Ponto de entrada do React
+├── .gitignore
+├── README.md
+├── index.html
+├── package.json
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vercel.json
+├── vite.config.ts
+└── eslint.config.js
