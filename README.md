@@ -8,7 +8,7 @@ A interface foi desenvolvida com foco em usabilidade, organização de component
 A aplicação está configurada para funcionar como um site estático moderno, com deploy automatizado e performance otimizada.
 
 🔗 Deploy em produção:  
-👉 https://folha-diaria.vercel.app :contentReference[oaicite:1]{index=1}
+👉 https://folha-diaria.vercel.app
 
 ---
 
