@@ -12,8 +12,13 @@
     width: 100%;
     align-items: center;
     gap: 8px;
+    padding: 0 2%;
+}
+
+.ignories div {
+    width: 100%;
 }
 
 .input-ignore {
-    width: 297px;
+    width: 100%;
 }

@@ -12,8 +12,9 @@
     display: flex;
     justify-content: center;
     gap: 15px;
+    padding: 0 2%;
 }
 
 .input-prioritie {
-    width: 261px;
+    width: 100%;
 }

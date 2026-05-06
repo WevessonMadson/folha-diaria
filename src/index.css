@@ -37,6 +37,7 @@ input:focus {
   background-color: #cea45c;
   border-radius: 10px;
   display: flex;
+  width: 100%;
 }
 
 .title-card {
@@ -53,15 +54,16 @@ input:focus {
 }
 
 .card-one {
-  width: 334px;
+  /* width: 334px; */
   height: 70px;
   align-items: center;
   gap: 9px;
   justify-content: flex-start;
+  padding: 0 2% 0 0;
 }
 
 .card-two {
-  width: 334px;
+  /* width: 334px; */
   height: 278px;
   flex-direction: column;
   align-items: left;
@@ -70,7 +72,7 @@ input:focus {
 }
 
 .card-three {
-  width: 334px;
+  /* width: 334px; */
   height: 172px;
   padding: 19px 0px 26px;
   flex-direction: column;
